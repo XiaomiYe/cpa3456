@@ -72,9 +72,9 @@ interface ITRC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-contract TgCPA3456 is ITRC20 {
-    string public constant name = "telegram:cpa3456";
-    string public constant symbol = "TgCPA3456";
+contract TgCpaQQ is ITRC20 {
+    string public constant name = "TG:cpaQQ";
+    string public constant symbol = "TgCpaQQ";
     uint8 public constant decimals = 18;
     uint256 public override totalSupply = 100000000 * 10**decimals;
     uint256 public burnLimit = 10000000 * 10**decimals;
@@ -100,8 +100,8 @@ contract TgCPA3456 is ITRC20 {
         if (recipient == address(0)) {
             return burn(msg.sender, amount);
         }
-        require(amount > 0, "TgCPA3456: amount must be greater than 0");
-        require(balances[msg.sender] >= amount, "TgCPA3456: Insufficient balance");
+        require(amount > 0, "TgCpaQQ: amount must be greater than 0");
+        require(balances[msg.sender] >= amount, "TgCpaQQ: Insufficient balance");
         
         balances[msg.sender] -= amount;
         balances[recipient] += amount;
@@ -116,10 +116,10 @@ contract TgCPA3456 is ITRC20 {
     }
     
     function transferFrom(address sender, address recipient, uint256 amount) external override returns(bool success){
-        require(recipient != address(0), "TgCPA3456: The destination address must not be 0");
-        require(amount > 0, "TgCPA3456: amount must be greater than 0");
-        require(allowances[sender][msg.sender] >= amount, "TgCPA3456:Insufficient authorization");
-        require(balances[sender] >= amount, "TgCPA3456:Insufficient balance");
+        require(recipient != address(0), "TgCpaQQ: The destination address must not be 0");
+        require(amount > 0, "TgCpaQQ: amount must be greater than 0");
+        require(allowances[sender][msg.sender] >= amount, "TgCpaQQ:Insufficient authorization");
+        require(balances[sender] >= amount, "TgCpaQQ:Insufficient balance");
         
         allowances[sender][msg.sender] -= amount;
         balances[sender] -= amount;
@@ -129,12 +129,12 @@ contract TgCPA3456 is ITRC20 {
     }
     
     function burn(address spender, uint256 amount) internal returns (bool success) {
-        require(amount > 0, "TgCPA3456: burn amount of TgCPA3456 must be greater than 0");
-        require(totalSupply > burnLimit, "TgCPA3456: Destruction up to limit");
+        require(amount > 0, "TgCpaQQ: burn amount of TgCpaQQ must be greater than 0");
+        require(totalSupply > burnLimit, "TgCpaQQ: Destruction up to limit");
         if (totalSupply - amount < burnLimit) {
             amount = totalSupply - burnLimit;
         }
-        require(balances[spender] >= amount, "TgCPA3456: Insufficient balance");
+        require(balances[spender] >= amount, "TgCpaQQ: Insufficient balance");
         totalSupply -= amount;
         balances[spender] -= amount;
         balances[address(0)] += amount;
